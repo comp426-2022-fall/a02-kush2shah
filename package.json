@@ -6,23 +6,23 @@
   "scripts": {
     "test": "node cli.js -n 35.92 -w 79.05 -z America/New_York"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/comp426-2022-fall/a02-kush2shah.git"
   },
   "author": "kush2shah",
   "license": "LGPL-3.0-or-later",
-  "bin": {
-    "galosh.js": "./cli.js",
-  },
   "bugs": {
     "url": "https://github.com/comp426-2022-fall/a02-kush2shah/issues"
   },
-  "type": "module",
   "homepage": "https://github.com/comp426-2022-fall/a02-kush2shah#readme",
   "dependencies": {
     "minimist": "^1.2.6",
     "moment-timezone": "^0.5.37",
     "node-fetch": "^3.2.10"
+  },
+  "bin": {
+    "galosh.js": "./cli.js"
   }
 }
