@@ -7,7 +7,7 @@ import fetch from 'node-fetch';
 // read cli args
 const args = minimist(process.argv.slice(2));
 console.log(args);
-if(args.h) {
+if (args.h) {
     console.log(`Usage: galosh.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME_ZONE
     -h            Show this help message and exit.
     -n, -s        Latitude: N positive; S negative.
@@ -26,7 +26,10 @@ const lon = (args.e || args.w * -1);
 const timezone = moment.tz.guess();
 
 // day to retrieve. default to tomorrow
-const day = args.d || 1;
+let day = 1;
+if (args.d != null) {
+    day = args.d;
+}
 
 // request data
 const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=` + lat + `&longitude=` + lon + `&daily=precipitation_hours&timezone=` + timezone);
@@ -34,22 +37,25 @@ const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=` 
 // get data
 const data = await response.json();
 
-if(args.j){
+if (args.j) {
     console.log(data);
     process.exit(0);
 }
-
-if(data.daily.precipitation_hours[day] > 0){
-    console.log(`You will need your galoshes `);
+let returnedMsg = "";
+if (data.daily.precipitation_hours[day] > 0) {
+    returnedMsg += "You will need your galoshes ";
 } else {
-    console.log(`You will not need your galoshes `);
+    returnedMsg += "You will not need your galoshes ";
 }
 
 // complete text with day input
-if(day == 0) {
-    console.log(`today.`);
+if (day === 0) {
+    returnedMsg += "today.";
 } else if (day > 1) {
-    console.log(`in " + day + " days.`);
+    returnedMsg += ("in " + day + " days.");
 } else {
-    console.log(`tomorrow.`);
+    returnedMsg += ("tomorrow.");
 }
+
+console.log(returnedMsg);
+process.exit(0);
