@@ -18,6 +18,7 @@
   "bugs": {
     "url": "https://github.com/comp426-2022-fall/a02-kush2shah/issues"
   },
+  "type": "module",
   "homepage": "https://github.com/comp426-2022-fall/a02-kush2shah#readme",
   "dependencies": {
     "minimist": "^1.2.6",
