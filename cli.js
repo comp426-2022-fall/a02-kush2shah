@@ -29,7 +29,7 @@ const timezone = moment.tz.guess();
 const day = args.d || 1;
 
 // request data
-const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=` + lat + `&longitude=` + lon + `&daily=precipitation_sum&timezone=` + timezone);
+const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=` + lat + `&longitude=` + lon + `&daily=precipitation_hours&timezone=` + timezone);
 
 // get data
 const data = await response.json();
@@ -37,4 +37,19 @@ const data = await response.json();
 if(args.j){
     console.log(data);
     process.exit(0);
+}
+
+if(data.daily.precipitation_hours[day] > 0){
+    console.log(`You will need your galoshes `);
+} else {
+    console.log(`You will not need your galoshes `);
+}
+
+// complete text with day input
+if(day == 0) {
+    console.log("today.");
+} else if (day > 1) {
+    console.log("in " + day + " days.");
+} else {
+    console.log("tomorrow.");
 }
