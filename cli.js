@@ -47,9 +47,9 @@ if(data.daily.precipitation_hours[day] > 0){
 
 // complete text with day input
 if(day == 0) {
-    console.log("today.");
+    console.log(`today.`);
 } else if (day > 1) {
-    console.log("in " + day + " days.");
+    console.log(`in " + day + " days.`);
 } else {
-    console.log("tomorrow.");
+    console.log(`tomorrow.`);
 }
